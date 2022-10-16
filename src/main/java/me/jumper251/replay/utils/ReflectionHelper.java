@@ -97,9 +97,7 @@ public class ReflectionHelper {
 	public void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
 		try {
 			this.sendTitle.invoke(player, title, subtitle, fadeIn, stay, fadeOut);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		} catch (IllegalAccessException | IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();

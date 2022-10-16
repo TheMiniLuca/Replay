@@ -52,39 +52,38 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
 		String arg = args.length >= 1 ? args[0] : "overview";
 
-		if (checkPermission(cs, arg)) {
-			
+		if (checkPermission(cs, arg) && cs.isOp()) {
 			if (args.length == 0) {
 				cs.sendMessage(this.description);
 				for (SubCommand sub : this.subCommands) {
 					if (!checkPermission(cs, sub.getLabel().toLowerCase()) || !sub.isEnabled()) continue;
-						
+
 					cs.sendMessage(this.format.getOverviewMessage(this.command, sub.getArgs(), sub.getDescription()));
 				}
 			} else {
 				for (SubCommand sub : this.subCommands) {
 					if (sub.getLabel().equalsIgnoreCase(arg) || sub.getAliases().contains(arg)) {
-						
+
 						if (sub.isPlayerOnly() && !(cs instanceof Player)) {
 							cs.sendMessage(this.format.getConsoleMessage());
 							return true;
 						}
-						
+
 						if (!sub.execute(cs, cmd, label, args)) {
 							cs.sendMessage(this.format.getSyntaxMessage(this.command, sub.getArgs()));
 						}
-						
+
 						return true;
 					}
 				}
-				
+
 				cs.sendMessage(this.format.getNotFoundMessage());
 			}
-			
+
 		} else {
 			cs.sendMessage(this.format.getPermissionMessage());
 		}
-		
+
 		return true;
 	}
 

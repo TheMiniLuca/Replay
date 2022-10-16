@@ -76,20 +76,20 @@ public class ReplayAPI {
 				
 				@Override
 				public void accept(Replay replay) {
-					replay.play(watcher);
+					replay.play(watcher, null);
 					
 				}
 			});
 		}
 	}
 
-	public void jumpToReplayTime(Player watcher, Integer second) {
+	public void jumpToReplayTime(Player watcher, Integer second, String world) {
 		if (ReplayHelper.replaySessions.containsKey(watcher.getName())) {
 			Replayer replayer = ReplayHelper.replaySessions.get(watcher.getName());
 			if (replayer != null) {
 				int duration = replayer.getReplay().getData().getDuration() / 20;
 				if (second > 0 && second <= duration) {
-					replayer.getUtils().jumpTo(second);
+					replayer.getUtils().jumpTo(second, world);
 				}
 			}
 		}

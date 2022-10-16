@@ -4,6 +4,8 @@ package me.jumper251.replay;
 import java.util.HashMap;
 
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -29,7 +31,8 @@ public class ReplaySystem extends JavaPlugin {
 	
 	public final static String PREFIX = "§8[§3Replay§8] §r§7";
 
-	
+
+
 	@Override
 	public void onDisable() {
 		for (Replay replay : new HashMap<>(ReplayManager.activeReplays).values()) {
@@ -45,13 +48,14 @@ public class ReplaySystem extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		
-		Long start = System.currentTimeMillis();
+		long start = System.currentTimeMillis();
 
 		getLogger().info("Loading Replay v" + getDescription().getVersion() + " by " + getDescription().getAuthors().get(0));
 		
 		ConfigManager.loadConfigs();
 		ReplayManager.register();
-		
+
+		//getServer().getPluginManager().disablePlugin(this);
 		ReplaySaver.register(ConfigManager.USE_DATABASE ? new DatabaseReplaySaver() : new DefaultReplaySaver());
 		
 		updater = new Updater();
