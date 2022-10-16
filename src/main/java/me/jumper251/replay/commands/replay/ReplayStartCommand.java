@@ -70,7 +70,7 @@ public class ReplayStartCommand extends SubCommand {
 				public void run() {
 					ReplayAPI.getInstance().stopReplay(name, true, true);
 				}
-			}.runTaskLater(ReplaySystem.getInstance(), duration * 20);
+			}.runTaskLater(ReplaySystem.getInstance(), duration * 20L);
 		}
 		
 		if (args.length <= 2) {

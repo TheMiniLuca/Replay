@@ -1,8 +1,12 @@
 package me.jumper251.replay.replaysystem.replaying;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import com.gmail.theminiluca.roin.pvp.plugin.RoinPvP;
+import com.gmail.theminiluca.roin.pvp.plugin.User;
+import com.gmail.theminiluca.roin.pvp.plugin.api.Duration;
 import org.bukkit.Bukkit;
 
 import org.bukkit.GameMode;
@@ -97,8 +101,14 @@ public class ReplaySession {
 			@Override
 			public void run() {
 				resetPlayer();
-				
-				player.teleport(start);
+
+				User user = RoinPvP.getUser(player.getUniqueId());
+				Bukkit.unloadWorld("replays/" + user.getName(), false);
+				RoinPvP.deleteWorld("replays/" + user.getName());
+				RoinPvP.delete(new File(System.getProperty("user.dir") + File.separator + "replays/" + user.getName()));
+				if (user.isOnline()) {
+					user.setLobbyStatus(ReplaySystem.getInstance());
+				}
 				
 				
 				if (ConfigManager.HIDE_PLAYERS) {

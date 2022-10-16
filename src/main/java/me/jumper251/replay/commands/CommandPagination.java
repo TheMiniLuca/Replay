@@ -27,7 +27,7 @@ public class CommandPagination<T> {
 		int startIndex = (page - 1) * this.elementsPerPage;
 		int endIndex = page * this.elementsPerPage;
 		
-		return this.content.subList(startIndex, endIndex <= this.content.size() ? endIndex : this.content.size());
+		return this.content.subList(startIndex, Math.min(endIndex, this.content.size()));
 	}
 	
 	public int getPages() {

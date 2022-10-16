@@ -4,6 +4,5 @@ main: me.jumper251.replay.ReplaySystem
 author: Jumper251
 depend: [ProtocolLib]
 commands:
-  replay:
-    description: Main Replay command
-    aliases: [rp]
+  replayAdmin:
+    description: 리플레이 메인 커맨드.

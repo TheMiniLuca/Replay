@@ -36,13 +36,9 @@ public class ReplayPlayCommand extends SubCommand {
 		if (ReplaySaver.exists(name) && !ReplayHelper.replaySessions.containsKey(p.getName())) {
 			p.sendMessage(ReplaySystem.PREFIX + "Loading replay §e" + name + "§7...");
 			try {
-				ReplaySaver.load(args[1], new Consumer<Replay>() {
-					
-					@Override
-					public void accept(Replay replay) {
-						p.sendMessage(ReplaySystem.PREFIX + "Replay loaded. Duration §e" + (replay.getData().getDuration() / 20) + "§7 seconds.");
-						replay.play(p);
-					}
+				ReplaySaver.load(args[1], replay -> {
+					p.sendMessage(ReplaySystem.PREFIX + "Replay loaded. Duration §e" + (replay.getData().getDuration() / 20) + "§7 seconds.");
+					replay.play(p, null);
 				});
 
 			} catch (Exception e) {
