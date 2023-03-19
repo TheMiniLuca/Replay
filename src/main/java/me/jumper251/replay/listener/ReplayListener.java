@@ -42,7 +42,6 @@ import me.jumper251.replay.replaysystem.utils.entities.INPC;
 public class ReplayListener extends AbstractListener {
 
 	@SuppressWarnings("deprecation")
-	@EventHandler (priority = EventPriority.MONITOR)
 	public void onInteract(PlayerInteractEvent e) {
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			Player p = e.getPlayer();

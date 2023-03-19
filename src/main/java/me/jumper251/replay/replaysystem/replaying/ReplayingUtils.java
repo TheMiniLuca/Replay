@@ -204,7 +204,7 @@ public class ReplayingUtils {
                     blockChange = new BlockChangeData(blockChange.getLocation(), blockChange.getAfter(), blockChange.getBefore());
                 }
 
-                setBlockChange(blockChange);
+                setBlockChange(blockChange, world);
             }
 
             if (action.getPacketData() instanceof BedEnterData) {
@@ -502,8 +502,9 @@ public class ReplayingUtils {
         }
     }
 
-    private void setBlockChange(BlockChangeData blockChange) {
+    private void setBlockChange(BlockChangeData blockChange, String world) {
         final Location loc = LocationData.toLocation(blockChange.getLocation());
+        loc.setWorld(Bukkit.getWorld(world));
 
         if (ConfigManager.WORLD_RESET && !this.replayer.getBlockChanges().containsKey(loc)) {
             this.replayer.getBlockChanges().put(loc, blockChange.getBefore());

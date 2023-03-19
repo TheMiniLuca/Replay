@@ -1,8 +1,8 @@
 name: AdvancedReplay
 version: ${project.version}
 main: me.jumper251.replay.ReplaySystem
-author: Jumper251
-depend: [ProtocolLib]
+author: Jumper251, TheMiniLuca
+depend: [ProtocolLib, RoinPvP]
 commands:
   replayAdmin:
     description: 리플레이 메인 커맨드.

@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.gmail.theminiluca.roin.pvp.plugin.RoinPvP;
-import com.gmail.theminiluca.roin.pvp.plugin.User;
-import com.gmail.theminiluca.roin.pvp.plugin.api.Duration;
+import io.github.theminiluca.api.utils.Colour;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -54,6 +54,7 @@ public class Replayer {
 
     private BukkitRunnable run;
 
+    private int runTime;
     private int currentTicks;
     private double speed, tmpTicks;
 
@@ -113,7 +114,14 @@ public class Replayer {
 
             @Override
             public void run() {
+                if (runTime % 10 == 0) {
+                    int level = currentTicks / 20;
+                    int duration1 = replay.getData().getDuration() / 20;
+                    watcher.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                            TextComponent.fromLegacyText(String.format("%s          %s%02d:%02d / %02d:%02d         %sx%.2f", isPaused() ? Colour.RED + "정지됨" : (currentTicks < duration ? Colour.GREEN + "플레이중" : Colour.DARK_RED + "종료됨"), Colour.AQUA, level / 60, level % 60, duration1 / 60, duration1 % 60, Colour.YELLOW, getSpeed())));
+                }
 
+                ++runTime;
                 if (Replayer.this.paused) return;
 
                 Replayer.this.tmpTicks += speed;
@@ -128,9 +136,6 @@ public class Replayer {
                     }
 
                     updateXPBar();
-                } else {
-
-                    stop();
                 }
             }
         };
