@@ -3,6 +3,7 @@ version: ${project.version}
 main: me.jumper251.replay.ReplaySystem
 author: Jumper251, TheMiniLuca
 depend: [ProtocolLib, RoinPvP]
+api-version: 1.19
 commands:
   replayAdmin:
     description: 리플레이 메인 커맨드.
