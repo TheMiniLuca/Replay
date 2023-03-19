@@ -85,8 +85,6 @@ public class ConfigManager {
 				e.printStackTrace();
 			}
 		}
-			
-		ItemConfig.loadConfig();
 		
 		loadData(true);
 		
