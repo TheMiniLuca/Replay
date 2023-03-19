@@ -15,7 +15,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import com.comphenix.packetwrapper.WrapperPlayServerTitle;
 import com.comphenix.protocol.wrappers.EnumWrappers.TitleAction;
 
-import me.jumper251.replay.filesystem.ItemConfig;
 import me.jumper251.replay.filesystem.ItemConfigOption;
 import me.jumper251.replay.filesystem.ItemConfigType;
 import me.jumper251.replay.utils.ReflectionHelper;
@@ -54,14 +53,7 @@ public class ReplayHelper {
 		
 		return stack;
 	}
-	
-	public static ItemStack getPauseItem() {
-		return createItem(ItemConfig.getItem(ItemConfigType.PAUSE));
-	}
-	
-	public static ItemStack getResumeItem() {
-		return createItem(ItemConfig.getItem(ItemConfigType.RESUME));
-	}
+
 	
 	public static void createTeleporter(Player player, Replayer replayer) {
 		Inventory inv = Bukkit.createInventory(null, ((int)replayer.getNPCList().size() / 9) > 0 ? ((int)Math.floor(replayer.getNPCList().size() / 9)) * 9 : 9 , "§7Teleporter");
