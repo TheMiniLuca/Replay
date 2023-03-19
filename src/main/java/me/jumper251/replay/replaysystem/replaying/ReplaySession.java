@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import com.gmail.theminiluca.roin.pvp.plugin.RoinPvP;
+import me.jumper251.replay.api.ReplaySessionStartEvent;
 import org.bukkit.Bukkit;
 
 import org.bukkit.GameMode;
@@ -52,8 +52,9 @@ public class ReplaySession {
 		this.player.setHealth(this.player.getMaxHealth());
 		this.player.setFoodLevel(20);
 		this.player.getInventory().clear();
-		
-		RoinPvP.getUser(player).setReplayItem();
+
+		ReplaySessionStartEvent event = new ReplaySessionStartEvent(this, player);
+		Bukkit.getPluginManager().callEvent(event);
 		
 		
 		this.player.setAllowFlight(true);
