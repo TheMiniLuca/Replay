@@ -85,6 +85,8 @@ public class ConfigManager {
 				e.printStackTrace();
 			}
 		}
+
+//		ItemConfig.loadConfig();
 		
 		loadData(true);
 		
@@ -131,13 +133,11 @@ public class ConfigManager {
 		}
 
 
-		ItemConfig.loadData();
 	}
 	
 	public static void reloadConfig() {
 		try {
 			cfg.load(file);
-			ItemConfig.cfg.load(ItemConfig.file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
