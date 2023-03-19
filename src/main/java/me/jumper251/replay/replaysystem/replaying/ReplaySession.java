@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.gmail.theminiluca.roin.pvp.plugin.RoinPvP;
-import com.gmail.theminiluca.roin.pvp.plugin.User;
-import com.gmail.theminiluca.roin.pvp.plugin.api.Duration;
 import org.bukkit.Bukkit;
 
 import org.bukkit.GameMode;
@@ -18,9 +16,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.jumper251.replay.ReplaySystem;
 import me.jumper251.replay.api.ReplaySessionFinishEvent;
 import me.jumper251.replay.filesystem.ConfigManager;
-import me.jumper251.replay.filesystem.ItemConfig;
-import me.jumper251.replay.filesystem.ItemConfigOption;
-import me.jumper251.replay.filesystem.ItemConfigType;
 
 public class ReplaySession {
 
@@ -58,20 +53,7 @@ public class ReplaySession {
 		this.player.setFoodLevel(20);
 		this.player.getInventory().clear();
 		
-		ItemConfigOption teleport = ItemConfig.getItem(ItemConfigType.TELEPORT);
-		ItemConfigOption time = ItemConfig.getItem(ItemConfigType.SPEED);
-		ItemConfigOption leave = ItemConfig.getItem(ItemConfigType.LEAVE);
-		ItemConfigOption backward = ItemConfig.getItem(ItemConfigType.BACKWARD);
-		ItemConfigOption forward = ItemConfig.getItem(ItemConfigType.FORWARD);
-		ItemConfigOption pauseResume = ItemConfig.getItem(ItemConfigType.PAUSE);
-
-		List<ItemConfigOption> configItems = Arrays.asList(teleport, time, leave, backward, forward, pauseResume);
-
-		configItems.stream()
-			.filter(ItemConfigOption::isEnabled)
-			.forEach(item -> {
-				this.player.getInventory().setItem(item.getSlot(), ReplayHelper.createItem(item));
-			});
+		RoinPvP.getUser(player).setReplayItem();
 		
 		
 		this.player.setAllowFlight(true);
@@ -101,20 +83,10 @@ public class ReplaySession {
 			@Override
 			public void run() {
 				resetPlayer();
-
-				User user = RoinPvP.getUser(player.getUniqueId());
-				Bukkit.unloadWorld("replays/" + user.getName(), false);
-				RoinPvP.deleteWorld("replays/" + user.getName());
-				RoinPvP.delete(new File(System.getProperty("user.dir") + File.separator + "replays/" + user.getName()));
-				if (user.isOnline()) {
-					user.setLobbyStatus(ReplaySystem.getInstance());
-				}
-				
 				
 				if (ConfigManager.HIDE_PLAYERS) {
 					for (Player all : Bukkit.getOnlinePlayers()) {
 						if (all == player) continue;
-						
 						player.showPlayer(all);
 					}
 				}
