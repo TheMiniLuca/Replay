@@ -1,8 +1,6 @@
 package me.jumper251.replay;
 
 
-import git java.util.HashMap;
-
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,6 +17,8 @@ import me.jumper251.replay.replaysystem.utils.ReplayCleanup;
 import me.jumper251.replay.utils.Metrics;
 import me.jumper251.replay.utils.ReplayManager;
 import me.jumper251.replay.utils.Updater;
+
+import java.util.HashMap;
 
 
 public class ReplaySystem extends JavaPlugin {
