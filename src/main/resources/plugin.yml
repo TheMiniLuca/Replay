@@ -1,6 +1,8 @@
 name: RoinReplay
 version: ${project.version}
 main: me.jumper251.replay.ReplaySystem
+description: AdvancedReplay
+website: https://github.com/Jumper251/AdvancedReplay
 author: Jumper251, TheMiniLuca
 depend: [ProtocolLib, RoinPvP]
 api-version: 1.19
