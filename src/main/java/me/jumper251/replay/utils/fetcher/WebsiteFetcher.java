@@ -84,6 +84,7 @@ public class WebsiteFetcher {
 
 
         } catch (Exception e) {
+            LogUtils.log("Could not retrieve player profile: " + e.getMessage());
             e.printStackTrace();
         }
 

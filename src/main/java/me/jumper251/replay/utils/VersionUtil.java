@@ -22,6 +22,10 @@ public class VersionUtil {
 	public static boolean isCompatible(VersionEnum ve){
 		return VERSION.toLowerCase().contains(ve.toString().toLowerCase());
 	}
+
+	public static boolean isCompatibles() {
+		return VersionUtil.isCompatible(VersionEnum.V1_13) || VersionUtil.isCompatible(VersionEnum.V1_14) || VersionUtil.isCompatible(VersionEnum.V1_15) || VersionUtil.isCompatible(VersionEnum.V1_16) || VersionUtil.isCompatible(VersionEnum.V1_17) || VersionUtil.isCompatible(VersionEnum.V1_18) || VersionUtil.isCompatible(VersionEnum.V1_19) || VersionUtil.isCompatible(VersionEnum.V1_20);
+	}
 	
 	public static boolean isAbove(VersionEnum ve) {		
 		return VersionEnum.valueOf(CLEAN_VERSION.toUpperCase()).getOrder() >= ve.getOrder();
@@ -66,7 +70,8 @@ public class VersionUtil {
 		V1_16(9),
 		V1_17(10),
 		V1_18(11),
-		V1_19(12);
+		V1_19(12),
+		V1_20(13);
 		
 		private final int order;
 		
