@@ -26,8 +26,8 @@ public class WebsiteFetcher {
 
     private static Map<String, String> webChache = new HashMap<String, String>();
     private static Map<String, JsonClass> jsonCache = new HashMap<String, JsonClass>();
-
     private static ExecutorService pool = Executors.newCachedThreadPool();
+
 
     private String content;
 

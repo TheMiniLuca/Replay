@@ -115,5 +115,4 @@ public class DatabaseReplaySaver implements IReplaySaver {
 			replayCache.remove(id);
 		}
 	}
-
 }

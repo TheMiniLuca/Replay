@@ -7,5 +7,12 @@ author: Jumper251, TheMiniLuca
 depend: [ProtocolLib]
 api-version: 1.19
 commands:
+<<<<<<< HEAD
   replayAdmin:
     description: 리플레이 메인 커맨드.
+=======
+  replay:
+    description: Main Replay command
+    aliases: [rp]
+    permission: replay.command
+>>>>>>> upstream/master
